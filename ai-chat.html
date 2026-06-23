@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Chat</title>
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body{
+            font-family: 'Poppins', sans-serif;
+            background:#f4f6f9;
+            padding:30px;
+        }
+
+        .back-btn{
+    background: linear-gradient(135deg,#05054b,#1b1b9b);
+    color:white;
+    border:none;
+    padding:12px 22px;
+    border-radius:30px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.back-btn:hover{
+    background:orangered;
+    transform:translateY(-3px);
+}
+
+        textarea{
+    width:100%;
+    height:120px;
+    border:2px solid #d9d9d9;
+    border-radius:15px;
+    padding:15px;
+    font-size:16px;
+    resize:none;
+    outline:none;
+}
+
+textarea:focus{
+    border-color:orangered;
+}
+
+        button{
+            margin-top:15px;
+            padding:10px 20px;
+            cursor:pointer;
+        }
+
+       #response{
+    margin-top:30px;
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    line-height:1.8;
+    font-size:16px;
+    color:#333;
+    white-space:pre-wrap;
+}
+        .ask-btn{
+    margin-top:20px;
+    background:orangered;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    border-radius:30px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.ask-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 5px 15px rgba(255,69,0,0.3);
+}
+
+.actions{
+    margin-top:20px;
+}
+
+.actions button{
+    padding:10px 18px;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    margin-right:10px;
+    font-weight:600;
+}
+
+.save-btn{
+    background:#1e88e5;
+    color:white;
+}
+.map-btn{
+    background:#000000;
+    color:white;
+}
+
+.quiz-btn{
+    background:#43a047;
+    color:white;
+}
+#quiz-container{
+    margin-top:30px;
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    line-height:1.8;
+}
+    </style>
+</head>
+
+<body>
+
+<button class="back-btn"
+onclick="window.location.href='dashboard.php'">
+    Back to Dashboard
+</button>
+
+<h1>AI Chat</h1>
+
+<textarea id="question"
+placeholder="Ask anything..."></textarea>
+
+<br>
+
+<button class="ask-btn" onclick="askAI()">
+    Ask AI
+</button>
+
+<div id="response">
+    AI response will appear here...
+</div>
+<input type="hidden" id="savedQuestion">
+<input type="hidden" id="savedAnswer">
+
+<div class="actions">
+
+    <button class="save-btn" onclick="saveNote()">
+        Save as Notes
+    </button>
+
+    <button class="quiz-btn" onclick="generateQuiz()">
+        Generate 10 Quiz
+    </button>
+    <button class="map-btn" onclick="generateMap()">
+        Generate Knowledge Map
+    </button>
+
+</div>
+<div id="quiz-container"></div>
+<div id="knowledge-map"></div>
+<script>
+function askAI()
+{
+    let question = document.getElementById("question").value;
+
+    if(question.trim() == "")
+    {
+        alert("Please enter a question.");
+        return;
+    }
+
+    fetch("backend/ask_ai.php", {
+        method: "POST",
+
+        headers: {
+            "Content-Type":
+            "application/x-www-form-urlencoded"
+        },
+
+        body:
+        "question=" + encodeURIComponent(question)
+    })
+
+    .then(response => response.text())
+
+    .then(data => {
+
+        console.log("AI Response:", data);
+
+        document.getElementById("response").innerHTML = data;
+
+        /* Save question */
+        document.getElementById("savedQuestion").value =
+            question;
+
+        /* Save answer */
+        document.getElementById("savedAnswer").value =
+            data;
+
+        console.log(
+            "Saved Question:",
+            document.getElementById("savedQuestion").value
+        );
+
+        alert(
+            "Saved Topic: " +
+            document.getElementById("savedQuestion").value
+        );
+    })
+
+    .catch(error => {
+
+        console.log(error);
+
+        alert("Error while asking AI.");
+    });
+}
+function saveNote()
+{
+    let question =
+        document.getElementById("savedQuestion").value;
+
+    let answer =
+        document.getElementById("savedAnswer").value;
+
+    fetch("backend/save_note.php", {
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":
+            "application/x-www-form-urlencoded"
+        },
+
+        body:
+        "question="+encodeURIComponent(question)
+        +"&answer="+encodeURIComponent(answer)
+
+    })
+
+    .then(response=>response.text())
+
+    .then(data=>{
+
+        alert(data);
+
+    });
+}
+
+function generateQuiz()
+{
+    let answer =
+        document.getElementById("savedAnswer").value;
+
+    let topic =
+        document.getElementById("savedQuestion").value;
+
+    if(answer == "")
+    {
+        alert("Please ask AI first.");
+        return;
+    }
+
+    fetch("backend/generate_quiz.php", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type":
+            "application/x-www-form-urlencoded"
+        },
+
+        body:
+        "answer=" + encodeURIComponent(answer)
+        + "&topic=" + encodeURIComponent(topic)
+
+    })
+
+    .then(response => response.text())
+
+    .then(data => {
+
+        document.getElementById(
+            "quiz-container"
+        ).innerHTML = data;
+
+    });
+}
+function submitQuiz()
+{
+    let form = document.getElementById("quizForm");
+
+    let data = new FormData(form);
+
+    fetch("backend/submit_quiz.php", {
+        method: "POST",
+        body: data
+    })
+    .then(response => response.text())
+    .then(result => {
+        document.getElementById("quizResult").innerHTML = result;
+    })
+    .catch(error => {
+        alert(error);
+        console.log(error);
+    });
+}
+function generateMap()
+{
+    let answer =
+        document.getElementById("savedAnswer").value;
+
+    fetch("backend/generate_map.php", {
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":
+            "application/x-www-form-urlencoded"
+        },
+
+        body:
+        "answer="+encodeURIComponent(answer)
+
+    })
+
+    .then(response=>response.text())
+
+    .then(data=>{
+
+        document.getElementById(
+            "knowledge-map"
+        ).innerHTML = data;
+
+    });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notes</title>
+</head>
+<body style="font-family:Arial; padding:40px;">
+
+    <h1>Notes</h1>
+    <p>Your saved notes will appear here.</p>
+
+    <a href="dashboard.php">← Back to Dashboard</a>
+    <form action="backend/add_note.php" method="POST">
+    <input type="text" name="title" placeholder="Note Title" required>
+    <br><br>
+
+    <textarea name="content" rows="6" cols="40"
+              placeholder="Write your notes here..." required></textarea>
+
+    <br><br>
+
+    <button type="submit" name="save">
+        Save Note
+    </button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register</title>
+    </head>
+    <style>
+        *{
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        .container{
+            width: 750px;
+            height: 500px;
+            margin-top: 100px;
+            margin-left: 400px;
+            background-color: aqua;
+            align-items: center;
+            display: flex;
+        }
+        .option1{
+            width: 375px;
+            height: 500px;
+            background-color: rgb(5, 5, 64);
+
+        }
+        .option2{
+            width:375px;
+            height: 500px;
+            background-color: white;
+        }
+        .f1{
+            padding-left: 35px;
+            padding-top: 20px;
+        }
+        input{
+            border-radius: 5px;
+            width: 300px;
+            height: 30px;
+            border: 1px solid #ccc;
+        }
+        button{
+            border-radius: 5px;
+            width: 310px;
+            height: 35px;
+            background-color: aqua;
+            border: 1px solid #ccc;
+        }
+        b.option3{
+    width:75px;
+    height:75px;
+    background:#ff7a1a;
+    border-radius:18px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    font-size:32px;
+    font-weight:bold;
+    margin-top:40px;
+    margin-left:40px;
+
+    box-shadow:0 0 25px rgba(255,122,26,0.5);
+}
+.feature-boxes{
+    display:flex;
+    gap:15px;
+    margin-top:50px;
+    margin-left:40px;
+}
+
+.box{
+    width:150px;
+    height:55px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:12px;
+    margin-right: 20px;
+    padding:10px;
+    color:white;
+}
+
+.box span{
+    color:#67e8f9;
+    font-size:18px;
+    font-weight:bold;
+    display:block;
+    margin-bottom:12px;
+}
+
+.box h3{
+    font-size:12px;
+    font-weight:600;
+}
+        
+    </style>
+    <body style="background-color: rgb(37, 37, 203);">
+        <div class="container">
+            <div class="option1">
+                <div>
+                <b class="option3" style="color: white;background-color: orangered;">AI</b><br><br>
+                <h1 style="text-align: center;color: white;">Build Your Personal Study Workspace.</h1><br>
+                <p style="text-align: center;color: white;">Turn AI answers into notes and quizes,then<br>track your study activity from the dashboard.</p>
+                <div class="feature-boxes">
+                    <div class="box">
+                        <span>01</span>
+                        <h3>Ask AI</h3>
+                    </div>
+                    <div class="box">
+                        <span>02</span>
+                        <h3>Save Notes</h3>
+                    </div>
+                    <div class="box">
+                        <span>03</span>
+                        <h3>Test Yourself</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="option2">
+                <div class="f1">
+                <b>
+                <h2 style="color: orangered;">Start Learning</h2></b>
+                <h1>Create Account</h1>
+                <p style="color: rgb(78, 76, 76);">Create your student workspace.</p><br><br>
+                <form action="backend/register.php" method="POST">
+                    <input type="text"
+                    name="name"
+                    placeholder="Full Name"
+                    required><br><br>
+                    <input type="email"
+                    name="email"
+                    placeholder="Email"
+                    required><br><br>
+                    <input type="password"
+                    name="password"
+                    placeholder="Password"
+                    required><br><br>
+                    <button type="submit" name="register"><b>Register</b></button>
+                </form>
+                <p> Already have an account? <b> <a href="login.html" style="color: rgb(41, 113, 213);">Login</a></b></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

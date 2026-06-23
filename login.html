@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+    <style>
+        *{
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: rgb(37, 37, 203);
+        }
+
+        .container{
+            width: 750px;
+            height: 500px;
+            margin: 100px auto;
+            display: flex;
+        }
+
+        .option1{
+            width: 375px;
+            height: 500px;
+            background-color: rgb(5, 5, 64);
+        }
+
+        .option2{
+            width: 375px;
+            height: 500px;
+            background-color: white;
+        }
+
+        .f1{
+            padding-left: 35px;
+            padding-top: 40px;
+        }
+
+        input{
+            width: 300px;
+            height: 35px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding-left: 10px;
+        }
+
+        button{
+            width: 310px;
+            height: 35px;
+            border-radius: 5px;
+            border: none;
+            background-color: aqua;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .option3{
+            width: 75px;
+            height: 75px;
+            background: orangered;
+            border-radius: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 40px;
+            margin-left: 40px;
+            box-shadow: 0 0 25px rgba(255,122,26,0.5);
+        }
+
+        .feature-boxes{
+            display: flex;
+            gap: 15px;
+            margin-top: 50px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .box{
+            width: 100px;
+            height: 90px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 10px;
+            color: white;
+        }
+
+        .box span{
+            color: #67e8f9;
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .box h3{
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="option1">
+
+        <div class="option3">AI</div>
+
+        <br><br>
+
+        <h1 style="text-align:center;color:white;">
+            Study smarter with<br>
+            your AI companion
+        </h1>
+
+        <br>
+
+        <p style="text-align:center;color:white;">
+            Ask questions, save notes, generate quizzes
+            <br>
+            and keep your learning in one place.
+        </p>
+
+        <div class="feature-boxes">
+
+            <div class="box">
+                <span>01</span>
+                <h3>AI Notes</h3>
+            </div>
+
+            <div class="box">
+                <span>02</span>
+                <h3>Smart Quizzes</h3>
+            </div>
+
+            <div class="box">
+                <span>03</span>
+                <h3>Progress Tracking</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="option2">
+
+        <div class="f1">
+
+            <h2 style="color:orangered;">
+                Welcome Back
+            </h2>
+
+            <br>
+
+            <h1>Login</h1>
+
+            <br>
+
+            <p style="color:rgb(78,76,76);">
+                Continue your learning session.
+            </p>
+
+            <br><br><br>
+
+            <!-- LOGIN FORM -->
+
+            <form action="backend/login.php" method="POST">
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    required>
+
+                <br><br>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required>
+
+                <br><br>
+
+                <button type="submit" name="login">
+                    Login
+                </button>
+
+            </form>
+
+            <br>
+
+            <p>
+                New User?
+                <b>
+                    <a href="reg.html" style="color:rgb(41,113,213);">
+                        Register
+                    </a>
+                </b>
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
